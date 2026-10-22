@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "fixture": true,
+    "sanitized": true,
+    "asOf": "2026-10-14",
+    "externalConnections": false
+  },
+  "users": [
+    { "id": "usr-maya", "name": "Maya Shah", "role": "content", "initials": "MS", "tone": "violet" },
+    { "id": "usr-noah", "name": "Noah Kim", "role": "edit", "initials": "NK", "tone": "blue" },
+    { "id": "usr-other-editor", "name": "Other", "role": "edit", "initials": "O", "tone": "slate", "isFallback": true },
+    { "id": "usr-pritam", "name": "Pritam", "role": "edit", "initials": "P", "tone": "violet", "isTeamLead": true },
+    { "id": "usr-yashasvi", "name": "Yashasvi", "role": "edit", "initials": "Y", "tone": "green", "isTeamLead": true },
+    { "id": "usr-isha", "name": "Isha Rao", "role": "brand", "initials": "IR", "tone": "amber" },
+    { "id": "usr-leo", "name": "Leo Martins", "role": "performance", "initials": "LM", "tone": "green" },
+    { "id": "usr-himani", "name": "Himani", "role": "content", "initials": "H", "tone": "violet" },
+    { "id": "usr-zoha", "name": "Zoha", "role": "content", "initials": "Z", "tone": "blue" },
+    { "id": "usr-tanmay", "name": "Tanmay", "role": "content", "initials": "T", "tone": "green" },
+    { "id": "usr-sanjeet", "name": "Sanjeet", "role": "brand", "initials": "S", "tone": "amber" },
+    { "id": "usr-ansh", "name": "Ansh", "role": "brand", "initials": "A", "tone": "slate" },
+    { "id": "usr-sidhharth", "name": "Sidhharth", "role": "brand", "initials": "SH", "tone": "violet" },
+    { "id": "usr-siddhartha", "name": "Siddhartha", "role": "brand", "initials": "SD", "tone": "blue" },
+    { "id": "usr-sindhura", "name": "Sindhura", "role": "brand", "initials": "SI", "tone": "green" },
+    { "id": "usr-sonali", "name": "Sonali", "role": "brand", "initials": "SO", "tone": "amber" },
+    { "id": "usr-shama", "name": "Shama", "role": "brand", "initials": "SH", "tone": "violet" },
+    { "id": "usr-admin", "name": "Sam Jordan", "role": "administrator", "initials": "SJ", "tone": "slate" }
+  ],
+  "tasks": [
+    {
+      "id": "BPE-1051", "title": "Barrier repair morning routine", "brand": "Plix", "product": "Guava Glow Serum", "campaign": "Work Plan", "briefType": "video", "sourceSheet": "Work Plan", "category": "Skin", "contentType": "UGC", "priority": "P0", "state": "social_research", "legacyStatus": "Sent to Content", "targetDate": "2026-10-20", "editorId": null, "contentOwnerId": "usr-himani", "scriptOwnerId": "usr-himani", "publisherId": null, "progress": 10, "platform": "Instagram", "hasMissingAssets": false, "updatedAt": "2026-10-19T09:10:00+05:30", "summary": "Write a 30-second creator script for women 25–34. Open with dry, tight skin after cleansing; introduce the serum by second 6; mention barrier support and lightweight texture; end with a morning-routine CTA. Avoid medical claims.", "deliverables": ["30-second 9:16 script"], "references": ["Approved claims sheet", "Creator reference reel"], "documents": [], "versions": [], "activity": [{"at":"2026-10-19T09:10:00+05:30","actor":"Sanjeet","team":"Brand","text":"Sent requirements to Content Team and assigned Himani by default."}]
+    },
+    {
+      "id": "BPE-1050", "title": "Frizz control humidity hook", "brand": "Plix", "product": "Hibiscus Bond Repair", "campaign": "Work Plan", "briefType": "video", "sourceSheet": "Work Plan", "category": "Hair", "contentType": "Hook Change", "priority": "P1", "state": "social_research", "legacyStatus": "Sent to Content", "targetDate": "2026-10-21", "editorId": null, "contentOwnerId": "usr-zoha", "scriptOwnerId": "usr-zoha", "publisherId": null, "progress": 10, "platform": "Meta", "hasMissingAssets": false, "updatedAt": "2026-10-19T10:25:00+05:30", "summary": "Create three alternate hooks around monsoon frizz. Keep the approved body copy unchanged, show the before/after in the first five seconds, and retain the existing offer line.", "deliverables": ["3 hook options"], "references": ["Approved master script", "Hook performance notes"], "documents": [], "versions": [], "activity": [{"at":"2026-10-19T10:25:00+05:30","actor":"Sidhharth","team":"Brand","text":"Sent requirements to Content Team and assigned Zoha by default."}]
+    },
+    {
+      "id": "BPE-1049", "title": "Daily energy myth-buster", "brand": "Plix", "product": "ACV Effervescent", "campaign": "AI Tracker Main", "briefType": "ai", "sourceSheet": "AI Tracker Main", "category": "Nutra", "contentType": "AI Male", "priority": "P1", "state": "script_changes_requested", "legacyStatus": "Script Changes", "targetDate": "2026-10-20", "editorId": null, "contentOwnerId": "usr-tanmay", "scriptOwnerId": "usr-tanmay", "publisherId": null, "progress": 20, "platform": "Instagram", "hasMissingAssets": false, "updatedAt": "2026-10-19T11:05:00+05:30", "summary": "Revise the script to remove the weight-loss statement. Keep the myth-versus-fact structure, focus on daily routine and taste, and close with the approved disclaimer.", "deliverables": ["Revised AI presenter script"], "references": ["Brand feedback round 1", "Approved disclaimer"], "documents": [], "versions": [], "activity": [{"at":"2026-10-19T11:05:00+05:30","actor":"Sindhura","team":"Brand","text":"Requested script changes and returned the task to Tanmay."}]
+    },
+    {
+      "id": "BPE-1048", "title": "Hydration routine — creator cut", "brand": "Northstar", "product": "Hydra Cloud", "campaign": "October Reset", "category": "Skin", "contentType": "Shorter cut", "priority": "P0", "state": "approval_pending", "legacyStatus": "Video Approval Pending", "targetDate": "2026-10-14", "editorId": "usr-noah", "contentOwnerId": "usr-maya", "publisherId": null, "progress": 92, "platform": "Instagram", "hasMissingAssets": false, "updatedAt": "2026-10-14T10:42:00+05:30", "summary": "Tight 24-second cut with a benefit-first opening and clean end card.", "deliverables": ["9:16 master", "1:1 cutdown", "Caption file"], "references": ["Sanitized reference A", "Approved product pack"], "versions": [{"id":"ver-1048-1","number":1,"label":"First cut","submittedAt":"2026-10-13T16:20:00+05:30","status":"Changes requested"},{"id":"ver-1048-2","number":2,"label":"Revised hook and end card","submittedAt":"2026-10-14T10:30:00+05:30","status":"In review"}], "activity": [{"at":"2026-10-14T10:30:00+05:30","actor":"Noah Kim","text":"Submitted version 2 for brand review."},{"at":"2026-10-13T18:05:00+05:30","actor":"Isha Rao","text":"Requested a clearer product reveal."}]
+    },
+    {
+      "id": "BPE-1047", "title": "Morning energy — motion edit", "brand": "Aster Labs", "product": "Daily Rise", "campaign": "Always On", "category": "Nutra", "contentType": "Music", "priority": "P0", "state": "editing_in_progress", "legacyStatus": "WiP", "targetDate": "2026-10-13", "editorId": "usr-noah", "contentOwnerId": "usr-maya", "publisherId": null, "progress": 64, "platform": "Meta", "hasMissingAssets": false, "updatedAt": "2026-10-14T09:18:00+05:30", "summary": "Fast-paced performance cut using approved studio footage.", "deliverables": ["9:16 master", "15-second cutdown"], "references": ["Approved footage folder", "Music direction"], "versions": [], "activity": [{"at":"2026-10-14T09:18:00+05:30","actor":"Noah Kim","text":"Updated edit progress to 64%."}]
+    },
+    {
+      "id": "BPE-1046", "title": "Texture demo — AI avatar", "brand": "Northstar", "product": "Velvet Wash", "campaign": "Texture Week", "category": "Hair", "contentType": "AI avatar", "priority": "P1", "state": "blocked", "legacyStatus": "On hold", "targetDate": "2026-10-12", "editorId": null, "contentOwnerId": "usr-maya", "publisherId": null, "progress": 12, "platform": "Instagram", "hasMissingAssets": true, "updatedAt": "2026-10-13T17:12:00+05:30", "summary": "Avatar-led demo waiting on the final pack image and pronunciation guide.", "deliverables": ["9:16 master"], "references": ["Script draft"], "versions": [], "activity": [{"at":"2026-10-13T17:12:00+05:30","actor":"Maya Shah","text":"Marked blocked: final pack image missing."}]
+    },
+    {
+      "id": "BPE-1045", "title": "Weekend reset — regional adaptation", "brand": "Common Ground", "product": "Calm Blend", "campaign": "Regional Growth", "category": "Nutra", "contentType": "Regional VO", "priority": "P2", "state": "editing_queue", "legacyStatus": "P2", "targetDate": "2026-10-15", "editorId": null, "contentOwnerId": "usr-maya", "publisherId": null, "progress": 0, "platform": "Meta", "hasMissingAssets": false, "updatedAt": "2026-10-14T08:05:00+05:30", "summary": "Adapt the approved master into two regional voiceover versions.", "deliverables": ["Language A master", "Language B master"], "references": ["Approved master", "Pronunciation sheet"], "versions": [], "activity": [{"at":"2026-10-14T08:05:00+05:30","actor":"Maya Shah","text":"Submitted a complete brief to editing."}]
+    },
+    {
+      "id": "BPE-1044", "title": "Ingredient story — product loop", "brand": "Field Notes", "product": "Root Serum", "campaign": "Proof in Product", "category": "Hair", "contentType": "Hook change", "priority": "P1", "state": "ready_for_performance", "legacyStatus": "Closed", "targetDate": "2026-10-14", "editorId": "usr-noah", "contentOwnerId": "usr-maya", "publisherId": "usr-leo", "progress": 100, "platform": "Instagram", "hasMissingAssets": false, "updatedAt": "2026-10-14T11:06:00+05:30", "summary": "Approved product-focused loop ready for publishing handoff.", "deliverables": ["9:16 master", "Thumbnail"], "references": ["Approved claim sheet"], "versions": [{"id":"ver-1044-1","number":1,"label":"Approved master","submittedAt":"2026-10-14T09:10:00+05:30","status":"Approved"}], "activity": [{"at":"2026-10-14T11:06:00+05:30","actor":"Isha Rao","text":"Approved version 1 and sent to Performance."}]
+    },
+    {
+      "id": "BPE-1043", "title": "Desk-to-dinner transformation", "brand": "Common Ground", "product": "Glow Mist", "campaign": "Day to Night", "category": "Skin", "contentType": "Experimental", "priority": "P1", "state": "changes_requested", "legacyStatus": "NEED MORE EDIT", "targetDate": "2026-10-14", "editorId": "usr-noah", "contentOwnerId": "usr-maya", "publisherId": null, "progress": 78, "platform": "Instagram", "hasMissingAssets": false, "updatedAt": "2026-10-14T11:22:00+05:30", "summary": "Lifestyle transition edit; brand requested a less abrupt opening.", "deliverables": ["9:16 master"], "references": ["Storyboard", "Product pack"], "versions": [{"id":"ver-1043-1","number":1,"label":"First cut","submittedAt":"2026-10-14T10:02:00+05:30","status":"Changes requested"}], "activity": [{"at":"2026-10-14T11:22:00+05:30","actor":"Isha Rao","text":"Requested changes to the opening transition."}]
+    },
+    {
+      "id": "BPE-1042", "title": "Five-day challenge recap", "brand": "Aster Labs", "product": "Focus+", "campaign": "Challenge Series", "category": "Nutra", "contentType": "Shorter cut", "priority": "P0", "state": "publishing_failed", "legacyStatus": "Closed", "targetDate": "2026-10-13", "editorId": "usr-noah", "contentOwnerId": "usr-maya", "publisherId": "usr-leo", "progress": 100, "platform": "Meta", "hasMissingAssets": false, "updatedAt": "2026-10-14T10:54:00+05:30", "summary": "Approved recap awaiting manual publishing retry.", "deliverables": ["9:16 master", "Copy document"], "references": ["Approved master"], "versions": [{"id":"ver-1042-1","number":1,"label":"Approved master","submittedAt":"2026-10-13T14:00:00+05:30","status":"Approved"}], "activity": [{"at":"2026-10-14T10:54:00+05:30","actor":"Leo Martins","text":"Recorded publishing failure; no external action was triggered."}]
+    },
+    {
+      "id": "BPE-1041", "title": "Unboxing highlights", "brand": "Field Notes", "product": "Discovery Kit", "campaign": "Gifting", "category": "Global", "contentType": "Shorter cut", "priority": "R0", "state": "published", "legacyStatus": "Live", "targetDate": "2026-10-11", "editorId": "usr-noah", "contentOwnerId": "usr-maya", "publisherId": "usr-leo", "progress": 100, "platform": "Instagram", "hasMissingAssets": false, "updatedAt": "2026-10-11T18:31:00+05:30", "summary": "Published mock example with a recorded reference only.", "deliverables": ["9:16 master"], "references": ["Approved master"], "versions": [{"id":"ver-1041-1","number":1,"label":"Published master","submittedAt":"2026-10-11T14:20:00+05:30","status":"Approved"}], "activity": [{"at":"2026-10-11T18:31:00+05:30","actor":"Leo Martins","text":"Recorded mock publication reference."}]
+    }
+  ],
+  "channels": [
+    { "id": "channel-general", "name": "All teams", "scope": "general", "unread": 3 },
+    { "id": "channel-edit", "name": "Edit desk", "scope": "team", "unread": 1 },
+    { "id": "channel-campaign", "name": "October Reset", "scope": "campaign", "unread": 0 }
+  ],
+  "messages": [
+    { "id": "msg-1", "channelId": "channel-general", "authorId": "usr-isha", "body": "The review queue is clear through 11:00. Tag me on any P0 resubmissions.", "at": "2026-10-14T11:04:00+05:30", "taskId": null },
+    { "id": "msg-2", "channelId": "channel-edit", "authorId": "usr-noah", "body": "BPE-1047 is moving; first pass should be ready this afternoon.", "at": "2026-10-14T10:18:00+05:30", "taskId": "BPE-1047" },
+    { "id": "msg-3", "channelId": "channel-campaign", "authorId": "usr-maya", "body": "The revised product pack is now represented in the mock brief.", "at": "2026-10-14T09:46:00+05:30", "taskId": "BPE-1048" }
+  ],
+  "notifications": [
+    { "id": "note-1", "title": "P0 returned for changes", "detail": "BPE-1043 needs a new opening.", "at": "11:22", "read": false },
+    { "id": "note-2", "title": "Version ready for review", "detail": "BPE-1048 version 2 was submitted.", "at": "10:30", "read": false },
+    { "id": "note-3", "title": "Publishing attempt failed", "detail": "BPE-1042 is ready for a manual retry.", "at": "10:54", "read": true }
+  ]
+}
