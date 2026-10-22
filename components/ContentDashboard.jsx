@@ -55,6 +55,14 @@ function BriefBadge({ task }) {
   return <span className={`brief-badge ${isAi ? "ai" : "video"}`}>{isAi ? <Sparkles size={12} /> : <Video size={12} />}{isAi ? "AI brief" : "Video brief"}</span>;
 }
 
+function ContentTypeBadge({ value }) {
+  return <span className="content-type-badge">{value || "Content type not set"}</span>;
+}
+
+function TaskHeaderBadges({ task }) {
+  return <div className="task-header-badges"><Priority value={task.priority} /><BriefBadge task={task} /><ContentTypeBadge value={task.contentType} /></div>;
+}
+
 function Status({ state }) {
   const meta = STATE[state] || { label: state, tone: "gray" };
   return <span className={`status ${meta.tone}`}><i />{meta.label}</span>;
@@ -71,7 +79,7 @@ function OwnerSelect({ task, writers, onChange, compact = false }) {
 
 function TaskCard({ task, writers, users, onOpen, onAssign }) {
   const writer = users.find((person) => person.id === (task.scriptOwnerId || task.contentOwnerId));
-  return <button className="task-card" onClick={() => onOpen(task)}><div className="task-card-top"><div className="tag-row"><Priority value={task.priority} /><BriefBadge task={task} /></div><Status state={task.state} /></div><h3>{task.title}</h3><p>{task.product} <i /> {task.category} <i /> {task.contentType}</p><div className="requirement-preview"><b>Brand requirements</b><span>{task.summary || "No additional requirements provided."}</span></div><div className="card-assignment"><span><b>Assigned writer</b><span className="owner"><Avatar person={writer} small />{writer?.name || "Unassigned"}</span></span><OwnerSelect task={task} writers={writers} onChange={onAssign} compact /></div><div className="task-card-foot"><span>{task.id}</span><span>{formatDate(task.targetDate)}</span></div></button>;
+  return <button className="task-card" onClick={() => onOpen(task)}><div className="task-card-top"><TaskHeaderBadges task={task} /><Status state={task.state} /></div><h3>{task.title}</h3><p>{task.product} <i /> {task.category}</p><div className="requirement-preview"><b>Brand requirements</b><span>{task.summary || "No additional requirements provided."}</span></div><div className="card-assignment"><span><b>Assigned writer</b><span className="owner"><Avatar person={writer} small />{writer?.name || "Unassigned"}</span></span><OwnerSelect task={task} writers={writers} onChange={onAssign} compact /></div><div className="task-card-foot"><span>{task.id}</span><span>{formatDate(task.targetDate)}</span></div></button>;
 }
 
 function Board({ tasks, writers, users, onOpen, onAssign }) {
@@ -95,7 +103,7 @@ function Drawer({ task, users, writers, onClose, onAssign, onSubmit }) {
   const [tab, setTab] = useState("overview");
   if (!task) return null;
   const writer = users.find((person) => person.id === (task.scriptOwnerId || task.contentOwnerId));
-  return <><button className="drawer-backdrop" onClick={onClose} aria-label="Close task details" /><aside className="drawer"><header className="drawer-head"><div><span className="eyebrow">{task.id} · {task.category}</span><h2>{task.title}</h2><p>{task.contentType} · {task.product}</p></div><button className="close-button" onClick={onClose}><X /></button></header><nav className="drawer-tabs">{["overview", "activity"].map((item) => <button className={tab === item ? "active" : ""} onClick={() => setTab(item)} key={item}>{item}</button>)}</nav><div className="drawer-body">
+  return <><button className="drawer-backdrop" onClick={onClose} aria-label="Close task details" /><aside className="drawer"><header className="drawer-head"><div><span className="eyebrow">{task.id} · {task.category}</span><TaskHeaderBadges task={task} /><h2>{task.title}</h2><p>{task.product}</p></div><button className="close-button" onClick={onClose}><X /></button></header><nav className="drawer-tabs">{["overview", "activity"].map((item) => <button className={tab === item ? "active" : ""} onClick={() => setTab(item)} key={item}>{item}</button>)}</nav><div className="drawer-body">
     {tab === "overview" && <><section className="detail-section"><div className="section-title"><h3>Script handoff</h3><Status state={task.state} /></div>{task.state === "script_approval_pending" ? <div className="submitted-script"><Check size={18} /><div><strong>Sent for Brand approval</strong>{task.scriptLink ? <a href={task.scriptLink} target="_blank" rel="noreferrer">Open Google Doc <ExternalLink size={13} /></a> : <span>Script link recorded</span>}</div></div> : <ScriptForm task={task} onSubmit={onSubmit} />}</section><section className="detail-section"><div className="section-title"><h3>Requirements from Brand Team</h3><BriefBadge task={task} /></div><p className="summary">{task.summary || "No additional requirements were provided."}</p><div className="deliverables">{(task.deliverables || []).map((item) => <span key={item}><Check size={13} />{item}</span>)}</div></section><section className="detail-section"><div className="section-title"><h3>Assignment</h3></div><div className="detail-grid"><div><label>Content writer</label><OwnerSelect task={task} writers={writers} onChange={onAssign} /></div><div><label>Current owner</label><span className="inline-owner"><Avatar person={writer} small />{writer?.name || "Unassigned"}</span></div><div><label>Priority</label><Priority value={task.priority} /></div><div><label>Target date</label><span>{formatDate(task.targetDate)}</span></div><div><label>Source</label><span>{sourceSheet(task)}</span></div><div><label>Platform</label><span>{task.platform || "Unassigned"}</span></div></div></section><section className="detail-section"><div className="section-title"><h3>References</h3><span className="eyebrow">{(task.references || []).length} attached</span></div><div className="references">{(task.references || []).map((ref, index) => /^https:\/\//i.test(ref) ? <a href={ref} target="_blank" rel="noreferrer" key={`${ref}-${index}`}><ExternalLink size={14} />Open reference</a> : <span key={`${ref}-${index}`}><FileText size={14} />{ref}</span>)}</div></section></>}
     {tab === "activity" && <section className="detail-section"><div className="section-title"><h3>Activity</h3></div>{(task.activity || []).map((item, index) => <article className="activity-row" key={`${item.at}-${index}`}><span className="activity-dot" /><div><strong>{item.actor}</strong><p>{item.text}</p><time>{formatDateTime(item.at)}</time></div></article>)}</section>}
   </div></aside></>;
