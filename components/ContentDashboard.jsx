@@ -94,9 +94,10 @@ function TaskList({ tasks, writers, onOpen, onAssign }) {
 }
 
 function ScriptForm({ task, onSubmit, onOpenChangeRequest, inline = false }) {
+  const [hookName, setHookName] = useState(task?.hookName || "");
   const [link, setLink] = useState(task?.scriptLink || "");
   const [comments, setComments] = useState("");
-  return <form className={inline ? "script-form inline" : "script-form"} onSubmit={(event) => { event.preventDefault(); onSubmit(task, link, comments); }}><label><span>Google Docs script link</span><input type="url" required value={link} onChange={(event) => setLink(event.target.value)} placeholder="https://docs.google.com/document/d/..." /></label><label><span>Note for Brand <small>(optional)</small></span><input value={comments} onChange={(event) => setComments(event.target.value)} placeholder="What should the approver check?" /></label><div className="script-actions"><button className="button changes" type="button" onClick={() => onOpenChangeRequest(task)}><MessageSquareWarning size={15} />Request changes</button><button className="button primary" type="submit"><Send size={15} />Send script to Brand Team</button></div></form>;
+  return <form className={inline ? "script-form inline" : "script-form"} onSubmit={(event) => { event.preventDefault(); onSubmit(task, link, comments, hookName); }}><label><span>Hook Name</span><input required maxLength={200} value={hookName} onChange={(event) => setHookName(event.target.value)} placeholder="Enter the hook name" /></label><label><span>Google Docs script link</span><input type="url" required value={link} onChange={(event) => setLink(event.target.value)} placeholder="https://docs.google.com/document/d/..." /></label><label><span>Note for Brand <small>(optional)</small></span><input value={comments} onChange={(event) => setComments(event.target.value)} placeholder="What should the approver check?" /></label><div className="script-actions"><button className="button changes" type="button" onClick={() => onOpenChangeRequest(task)}><MessageSquareWarning size={15} />Request changes</button><button className="button primary" type="submit"><Send size={15} />Send script to Brand Team</button></div></form>;
 }
 
 function Drawer({ task, users, writers, onClose, onAssign, onSubmit, onOpenChangeRequest }) {
@@ -112,10 +113,11 @@ function Drawer({ task, users, writers, onClose, onAssign, onSubmit, onOpenChang
 function NewBriefModal({ tasks, onClose, onSubmit }) {
   const eligible = tasks.filter((task) => ["social_research", "script_changes_requested"].includes(task.state));
   const [taskId, setTaskId] = useState(eligible[0]?.id || "");
+  const [hookName, setHookName] = useState("");
   const [link, setLink] = useState("");
   const [comments, setComments] = useState("");
   const selected = tasks.find((task) => task.id === taskId);
-  return <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && onClose()}><form className="modal" onSubmit={(event) => { event.preventDefault(); onSubmit(selected, link, comments); }}><header><div><span className="eyebrow">Content Team</span><h2>Submit a script brief</h2></div><button type="button" className="close-button" onClick={onClose}><X /></button></header><div className="modal-body"><label><span>Brand brief</span><select value={taskId} onChange={(event) => setTaskId(event.target.value)} required>{eligible.map((task) => <option value={task.id} key={task.id}>{task.title} — {task.product}</option>)}</select><small>Select the Brand Team request this script answers.</small></label><label><span>Google Docs link</span><input value={link} onChange={(event) => setLink(event.target.value)} type="url" required placeholder="https://docs.google.com/document/d/..." /></label><label><span>Additional comments</span><textarea value={comments} onChange={(event) => setComments(event.target.value)} placeholder="Add context or instructions for Brand approval" /></label></div><footer><button type="button" className="button" onClick={onClose}>Cancel</button><button className="button primary" disabled={!eligible.length}><Send size={15} />Send script to Brand Team</button></footer></form></div>;
+  return <div className="modal-backdrop" onMouseDown={(event) => event.target === event.currentTarget && onClose()}><form className="modal" onSubmit={(event) => { event.preventDefault(); onSubmit(selected, link, comments, hookName); }}><header><div><span className="eyebrow">Content Team</span><h2>Submit a script brief</h2></div><button type="button" className="close-button" onClick={onClose}><X /></button></header><div className="modal-body"><label><span>Brand brief</span><select value={taskId} onChange={(event) => setTaskId(event.target.value)} required>{eligible.map((task) => <option value={task.id} key={task.id}>{task.title} — {task.product}</option>)}</select><small>Select the Brand Team request this script answers.</small></label><label><span>Hook Name</span><input required maxLength={200} value={hookName} onChange={(event) => setHookName(event.target.value)} placeholder="Enter the hook name" /></label><label><span>Google Docs link</span><input value={link} onChange={(event) => setLink(event.target.value)} type="url" required placeholder="https://docs.google.com/document/d/..." /></label><label><span>Additional comments</span><textarea value={comments} onChange={(event) => setComments(event.target.value)} placeholder="Add context or instructions for Brand approval" /></label></div><footer><button type="button" className="button" onClick={onClose}>Cancel</button><button className="button primary" disabled={!eligible.length}><Send size={15} />Send script to Brand Team</button></footer></form></div>;
 }
 
 function ChangeRequestModal({ task, onClose, onSubmit }) {
@@ -172,17 +174,19 @@ export default function ContentDashboard({ fixtureTasks, workbookTasks, users: r
     }
     showToast("Writer assignment updated");
   };
-  const submitScript = async (task, link, comments) => {
+  const submitScript = async (task, link, comments, hookName) => {
     if (!task) return;
+    const normalizedHookName = hookName?.trim();
+    if (!normalizedHookName) return showToast("Enter a hook name");
     try { const url = new URL(link); if (url.protocol !== "https:" || url.hostname !== "docs.google.com" || !url.pathname.startsWith("/document/")) return showToast("Use a valid Google Docs link"); } catch { return showToast("Use a valid Google Docs link"); }
     if (backendEnabled) {
-      const response = await fetch(`/api/tasks/${encodeURIComponent(task.id)}/script`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ scriptUrl: link, comment: comments }) });
+      const response = await fetch(`/api/tasks/${encodeURIComponent(task.id)}/script`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ hookName: normalizedHookName, scriptUrl: link, comment: comments }) });
       const payload = await response.json();
       if (!response.ok) return showToast(payload.error || "Could not submit script");
       setTasks((items) => items.map((item) => item.id === task.id ? { ...item, ...payload.task } : item));
     } else {
       const now = new Date().toISOString();
-      setTasks((items) => items.map((item) => item.id === task.id ? { ...item, state: "script_approval_pending", scriptLink: link, references: item.references?.includes(link) ? item.references : [...(item.references || []), link], updatedAt: now, activity: [{ at: now, actor: currentUser?.name || "Content Team", team: "Content Team", text: comments ? `Submitted the script to Brand Team. Note: ${comments}` : "Submitted the Google Docs script to Brand Team for approval." }, ...(item.activity || [])] } : item));
+      setTasks((items) => items.map((item) => item.id === task.id ? { ...item, hookName: normalizedHookName, state: "script_approval_pending", scriptLink: link, references: item.references?.includes(link) ? item.references : [...(item.references || []), link], updatedAt: now, activity: [{ at: now, actor: currentUser?.name || "Content Team", team: "Content Team", text: comments ? `Submitted “${normalizedHookName}” to Brand Team. Note: ${comments}` : `Submitted “${normalizedHookName}” to Brand Team for approval.` }, ...(item.activity || [])] } : item));
     }
     setModalOpen(false); setSelectedId(null); showToast("Script sent to Brand Team");
   };
